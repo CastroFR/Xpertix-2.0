@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1 class="text-center my-4">Lista de Usuarios</h1>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped shadow-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre de Usuario</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.nombre_usuario }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td>{{ usuario.rol }}</td>
+                    <td>
+                        <a href="{{ url_for('principal.editar_usuario', usuario_id=usuario.id) }}" class="btn btn-outline-warning btn-sm">Editar</a>
+                        <form action="{{ url_for('principal.eliminar_usuario', id=usuario.id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                        </form>
+
+                    </td>
+                </tr>
+                {% else %}
+                
+                 <!-- Example in listar_usuarios.html -->
+                 {% if current_user.rol == 'Customer' %}
+                 <button class="btn btn-primary">Establecer prioridades</button>
+                 {% elif current_user.rol == 'Doomsayer' %}
+                 <button class="btn btn-warning">Rastrear riesgos</button>
+                 {% endif %}
+
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No hay usuarios disponibles.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Detalles del Proyecto{% endblock %}
+
+{% block contenido %}
+<div class="card shadow-lg mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4><i class="bi bi-folder2"></i> {{ proyecto.titulo }}</h4>
+        <span class="badge bg-info">{{ proyecto.estado }}</span>
+    </div>
+
+    <div>
+        <a href="{{ url_for('principal.recomendaciones', proyecto_id=proyecto.id) }}" class="btn btn-info">
+            <i class="bi bi-lightbulb"></i> Generar Recomendaciones
+        </a>
+        <a href="{{ url_for('principal.inicio') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver a Inicio
+        </a>
+    </div>
+
+
+    <div class="card-body">
+        <p class="card-text"><i class="bi bi-text-left"></i> {{ proyecto.descripcion }}</p>
+        <p class="card-text">
+            <strong><i class="bi bi-calendar2-event"></i> Fecha de inicio:</strong> {{ proyecto.fecha_inicio.strftime('%d/%m/%Y') }}<br>
+            <strong><i class="bi bi-calendar2-check"></i> Fecha de finalización:</strong> 
+            {{ proyecto.fecha_fin.strftime('%d/%m/%Y') if proyecto.fecha_fin else 'No definida' }}
+        </p>
+    </div>
+</div>
+
+<h5 class="mb-3"><i class="bi bi-list-task"></i> Tareas relacionadas</h5>
+{% if tareas %}
+<table class="table table-hover table-bordered">
+    <thead class="table-primary">
+        <tr>
+            <th>Título</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Fecha de entrega</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+        <tr class="{% if tarea.estado == 'Completada' %}table-success{% endif %}">
+            <td><i class="bi bi-check2-circle"></i> {{ tarea.titulo }}</td>
+            <td>{{ tarea.prioridad }}</td>
+            <td>{{ tarea.estado }}</td>
+            <td>{{ tarea.fecha_entrega.strftime('%d/%m/%Y') }}</td>
+            <td>
+                {% if tarea.estado != 'Completada' %}
+                <form method="post" action="{{ url_for('principal.completar_tarea', id=tarea.id) }}" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-success">
+                        <i class="bi bi-check"></i> Completar
+                    </button>
+                </form>
+                {% else %}
+                <span class="badge bg-success"><i class="bi bi-check-circle"></i> Completada</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="text-muted"><i class="bi bi-info-circle"></i> No hay tareas relacionadas con este proyecto.</p>
+{% endif %}
+
+<hr>
+
+<h5><i class="bi bi-chat-dots"></i> Comentarios</h5>
+<form method="post" action="{{ url_for('principal.comentarios', tarea_id=proyecto.id) }}" class="mb-4">
+    <div class="form-group">
+        <textarea name="contenido" class="form-control" rows="3" placeholder="Agrega un comentario..." required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2"><i class="bi bi-send"></i> Enviar</button>
+</form>
+
+{% if comentarios %}
+<div class="contenedor-comentarios">
+    {% for comentario in comentarios %}
+    <div class="comentario-tarjeta">
+        <p class="comentario-info"><strong>{{ comentario.usuario.nombre_usuario }}</strong> - {{ comentario.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</p>
+        <p>{{ comentario.contenido }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted"><i class="bi bi-info-circle"></i> No hay comentarios en este proyecto.</p>
+{% endif %}
+
+<hr>
+
+<h5><i class="bi bi-lightbulb"></i> Feedback</h5>
+<p>¿Te fue útil esta recomendación o proyecto?</p>
+<div class="d-flex">
+    <form method="post" action="{{ url_for('principal.enviar_feedback') }}" class="feedback-form">
+        <input type="hidden" name="recomendacion" value="{{ proyecto.id }}">
+        <input type="hidden" name="utilidad" value="true">
+        <button type="submit" class="btn btn-success boton-util"><i class="bi bi-hand-thumbs-up"></i> Útil</button>
+    </form>
+    <form method="post" action="{{ url_for('principal.enviar_feedback') }}" class="feedback-form ms-2">
+        <input type="hidden" name="recomendacion" value="{{ proyecto.id }}">
+        <input type="hidden" name="utilidad" value="false">
+        <button type="submit" class="btn btn-danger boton-no-util"><i class="bi bi-hand-thumbs-down"></i> No útil</button>
+    </form>
+</div>
+{% endblock %}

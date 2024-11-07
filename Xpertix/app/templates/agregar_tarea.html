@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container my-4">
+    <h1 class="text-center">Agregar Tarea</h1>
+    <div class="card shadow-sm p-4 mt-3">
+        <form method="POST" onsubmit="return validateForm()">
+            {{ formulario.hidden_tag() }}
+            <div class="form-group">
+                {{ formulario.titulo.label(class="font-weight-bold") }}
+                {{ formulario.titulo(class="form-control") }}
+                {% if formulario.titulo.errors %}
+                    <small class="text-danger">{{ formulario.titulo.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ formulario.descripcion.label(class="font-weight-bold") }}
+                {{ formulario.descripcion(class="form-control", rows=4) }}
+                {% if formulario.descripcion.errors %}
+                    <small class="text-danger">{{ formulario.descripcion.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ formulario.recurso_asignado_id.label(class="font-weight-bold") }}
+                {{ formulario.recurso_asignado_id(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ formulario.proyecto_id.label(class="font-weight-bold") }}
+                {{ formulario.proyecto_id(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ formulario.prioridad.label(class="font-weight-bold") }}
+                {{ formulario.prioridad(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ formulario.fecha_entrega.label(class="font-weight-bold") }}
+                {{ formulario.fecha_entrega(class="form-control") }}
+                {% if formulario.fecha_entrega.errors %}
+                    <small class="text-danger">{{ formulario.fecha_entrega.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="text-center">
+                {{ formulario.enviar(class="btn btn-primary btn-lg mt-3") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

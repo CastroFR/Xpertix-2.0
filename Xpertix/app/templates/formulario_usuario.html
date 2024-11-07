@@ -1,0 +1,7 @@
+<!-- formulario_usuario.html -->
+<label for="rol">Rol</label>
+<select name="rol" id="rol" class="form-control">
+    {% for rol in ['Customer', 'Developer', 'Coach', 'Tracker', 'Tester', 'Doomsayer'] %}
+        <option value="{{ rol }}" {% if usuario.rol == rol %}selected{% endif %}>{{ rol }}</option>
+    {% endfor %}
+</select>
