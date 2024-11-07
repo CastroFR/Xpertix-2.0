@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1 class="titulo">Comentarios para la Tarea: {{ tarea.titulo }}</h1>
+<form method="POST" onsubmit="return validateForm()" class="formulario-comentario">
+    <textarea name="contenido" rows="3" placeholder="Escribe un comentario" required class="campo-texto"></textarea>
+    <button type="submit" class="boton-enviar">Agregar Comentario</button>
+</form>
+<h2 class="subtitulo">Historial de Comentarios</h2>
+<div class="contenedor-comentarios">
+    {% for comentario in comentarios %}
+        <div class="comentario-tarjeta">
+            <p class="comentario-contenido">{{ comentario.contenido }}</p>
+            <small class="comentario-info">Por: {{ comentario.usuario.nombre_usuario if comentario.usuario else "Usuario desconocido" }} el {{ comentario.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</small>
+        </div>
+    {% else %}
+        <p class="comentario-vacio">No hay comentarios para esta tarea.</p>
+    {% endfor %}
+</div>
+{% endblock %}

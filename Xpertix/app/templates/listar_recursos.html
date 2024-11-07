@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Lista de Recursos</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Disponibilidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for recurso in recursos %}
+        <tr>
+            <td>{{ recurso.nombre }}</td>
+            <td>{{ recurso.tipo }}</td>
+            <td>{{ "Disponible" if recurso.disponibilidad else "No disponible" }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">No hay recursos disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container my-4">
+    <h1 class="text-center">Agregar Proyecto</h1>
+    <div class="card shadow-sm p-4 mt-3">
+        <form method="POST" onsubmit="return validateForm()">
+            {{ formulario.hidden_tag() }}
+            <div class="form-group">
+                {{ formulario.titulo.label(class="font-weight-bold") }}
+                {{ formulario.titulo(class="form-control") }}
+                {% if formulario.titulo.errors %}
+                    <small class="text-danger">{{ formulario.titulo.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ formulario.descripcion.label(class="font-weight-bold") }}
+                {{ formulario.descripcion(class="form-control", rows=4) }}
+                {% if formulario.descripcion.errors %}
+                    <small class="text-danger">{{ formulario.descripcion.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ formulario.fecha_inicio.label(class="font-weight-bold") }}
+                {{ formulario.fecha_inicio(class="form-control") }}
+                {% if formulario.fecha_inicio.errors %}
+                    <small class="text-danger">{{ formulario.fecha_inicio.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ formulario.fecha_fin.label(class="font-weight-bold") }}
+                {{ formulario.fecha_fin(class="form-control") }}
+                {% if formulario.fecha_fin.errors %}
+                    <small class="text-danger">{{ formulario.fecha_fin.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="text-center">
+                {{ formulario.enviar(class="btn btn-primary btn-lg mt-3") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Lista de Tareas</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Prioridad</th>
+            <th>Recurso Asignado</th>
+            <th>Fecha de Entrega</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+        <tr>
+            <td>{{ tarea.titulo }}</td>
+            <td>{{ tarea.descripcion or "Sin descripción" }}</td>
+            <td>{{ tarea.estado }}</td>
+            <td>{{ tarea.prioridad }}</td>
+            <td>{{ tarea.recurso_asignado.nombre if tarea.recurso_asignado else 'Sin asignar' }}</td>
+            <td>{{ tarea.fecha_entrega.strftime('%d/%m/%Y') }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">No hay tareas disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

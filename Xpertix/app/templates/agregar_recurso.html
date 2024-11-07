@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container my-4">
+    <h1 class="text-center">Agregar Recurso</h1>
+    <div class="card shadow-sm p-4 mt-3">
+        <form method="POST" onsubmit="return validateForm()">
+            {{ formulario.hidden_tag() }}
+            <div class="form-group">
+                {{ formulario.nombre.label(class="font-weight-bold") }}
+                {{ formulario.nombre(class="form-control") }}
+                {% if formulario.nombre.errors %}
+                    <small class="text-danger">{{ formulario.nombre.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ formulario.tipo.label(class="font-weight-bold") }}
+                {{ formulario.tipo(class="form-control") }}
+                {% if formulario.tipo.errors %}
+                    <small class="text-danger">{{ formulario.tipo.errors[0] }}</small>
+                {% endif %}
+            </div>
+            <div class="form-group form-check">
+                {{ formulario.disponibilidad(class="form-check-input") }}
+                {{ formulario.disponibilidad.label(class="form-check-label") }}
+            </div>
+            <div class="text-center">
+                {{ formulario.enviar(class="btn btn-primary btn-lg mt-3") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

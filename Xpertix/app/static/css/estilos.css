@@ -1,0 +1,442 @@
+/* Estilo global */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Barra de navegación */
+nav {
+    background-color: #004d99;
+    color: #fff;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #80bfff;
+}
+
+/* Contenedor de contenido */
+.contenido {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+.boton {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.boton:hover {
+    background-color: #0056b3;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #004d99;
+    color: #fff;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    align-self: flex-start;
+}
+
+/* Footer */
+footer {
+    background-color: #004d99;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+    
+    .contenido {
+        padding: 15px;
+    }
+
+    table, th, td {
+        font-size: 0.9rem;
+    }
+
+    .boton {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+.flashes {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.flashes li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flashes .danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.feedback-form {
+    display: inline;
+}
+
+.boton-util, .boton-no-util {
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.boton-util {
+    background-color: #28a745;
+    color: white;
+}
+
+.boton-no-util {
+    background-color: #dc3545;
+    color: white;
+}
+
+.boton-util:hover {
+    background-color: #218838;
+}
+
+.boton-no-util:hover {
+    background-color: #c82333;
+}
+
+@media screen and (max-width: 768px) {
+    .contenido {
+        padding: 10px;
+        font-size: 14px;
+    }
+    nav ul {
+        display: block;
+        text-align: center;
+    }
+    nav li {
+        display: block;
+        margin: 10px 0;
+    }
+    .boton {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+
+
+
+/*nnnnn*/
+
+/* Estilos para comentarios */
+.titulo {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formulario-comentario .campo-texto {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.boton-enviar {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-enviar:hover {
+    background-color: #0056b3;
+}
+
+.contenedor-comentarios {
+    margin-top: 20px;
+}
+
+.comentario-tarjeta {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.comentario-info {
+    font-size: 12px;
+    color: #666;
+}
+
+.comentario-vacio {
+    font-style: italic;
+    color: #888;
+}
+
+/* Estilos para recomendaciones */
+.contenedor-recomendaciones {
+    margin-top: 20px;
+}
+
+.lista-recomendaciones {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recomendacion-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+}
+
+.boton-feedback {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.boton-util {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.boton-no-util {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.boton-util:hover {
+    background-color: #218838;
+}
+
+.boton-no-util:hover {
+    background-color: #c82333;
+}
+
+
+.enlace-comentarios {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.enlace-comentarios:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.1rem;
+}
+
+.badge-info {
+    font-size: 0.9rem;
+    padding: 0.3em 0.6em;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+.form-control {
+    font-size: 1rem;
+}
+
+.btn-lg {
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+}
+
+
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+}
+.notification.show {
+    display: block;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+
+.error {
+    border-color: red;
+}
+
+
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.notification {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInUp 0.3s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.btn {
+    background-color: #004d99;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #003366;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #FFD700 !important; /* Cambia el color a dorado */
+    border-bottom: 2px solid #FFD700; /* Añade un subrayado */
+}

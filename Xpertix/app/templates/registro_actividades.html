@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de Actividades{% endblock %}
+
+{% block contenido %}
+<div class="card shadow-lg">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4><i class="bi bi-clock-history"></i> Registro de Actividades</h4>
+    </div>
+    <div class="card-body">
+        {% if actividades %}
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Acción</th>
+                    <th>Fecha y Hora</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for actividad in actividades %}
+                <tr>
+                    <td>{{ actividad.usuario.nombre_usuario }}</td>
+                    <td>{{ actividad.accion }}</td>
+                    <td>{{ actividad.marca_tiempo.strftime('%d/%m/%Y %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-muted"><i class="bi bi-info-circle"></i> No hay actividades registradas.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

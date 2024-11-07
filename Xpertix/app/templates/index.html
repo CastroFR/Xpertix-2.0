@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Xpertix-XP{% endblock %}
+
+{% block contenido %}
+<h1 class="text-center mb-4"><i class="bi bi-layers"></i> Proyectos Actuales</h1>
+<div class="row">
+    {% for proyecto in proyectos %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-lg border-0 h-100">
+            <div class="card-body">
+                <h5 class="card-title text-primary"><i class="bi bi-folder"></i> {{ proyecto.titulo }}</h5>
+                <p class="card-text text-muted">{{ proyecto.descripcion[:100] }}...</p>
+                <p class="card-text">
+                    <i class="bi bi-calendar2-event"></i> Inicio: {{ proyecto.fecha_inicio.strftime('%d/%m/%Y') }}<br>
+                    <i class="bi bi-calendar2-check"></i> Fin: 
+                    {{ proyecto.fecha_fin.strftime('%d/%m/%Y') if proyecto.fecha_fin else 'No definida' }}
+                </p>
+                <a href="{{ url_for('principal.ver_detalles_proyecto', id=proyecto.id) }}" class="btn btn-outline-primary">
+                    <i class="bi bi-eye"></i> Ver detalles
+                </a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center">
+        <p class="text-muted"><i class="bi bi-info-circle"></i> No hay proyectos actualmente.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1 class="text-center my-4">Notificaciones Recientes</h1>
+<div class="container">
+    <ul class="list-group shadow-sm">
+        {% for actividad in actividades %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ actividad.accion }}
+            <span class="badge badge-secondary">{{ actividad.marca_tiempo.strftime('%d/%m/%Y %H:%M:%S') }}</span>
+        </li>
+        {% else %}
+        <li class="list-group-item text-center text-muted">No hay notificaciones recientes.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

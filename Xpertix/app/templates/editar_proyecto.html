@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Editar Proyecto</h1>
+<form method="POST" onsubmit="return validateForm()">
+    <div>
+        <label for="titulo">Título</label>
+        <input type="text" name="titulo" value="{{ proyecto.titulo }}" required>
+    </div>
+    <div>
+        <label for="descripcion">Descripción</label>
+        <textarea name="descripcion">{{ proyecto.descripcion }}</textarea>
+    </div>
+    <div>
+        <label for="estado">Estado</label>
+        <select name="estado">
+            <option value="Activo" {% if proyecto.estado == 'Activo' %}selected{% endif %}>Activo</option>
+            <option value="Completado" {% if proyecto.estado == 'Completado' %}selected{% endif %}>Completado</option>
+            <option value="Pausado" {% if proyecto.estado == 'Pausado' %}selected{% endif %}>Pausado</option>
+        </select>
+    </div>
+    <button type="submit">Actualizar Proyecto</button>
+</form>
+{% endblock %}
