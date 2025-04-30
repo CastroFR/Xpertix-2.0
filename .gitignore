@@ -1,0 +1,17 @@
+# Python
+__pycachce__/
+*.pyc
+*.pyo
+*.env
+
+# Credenciales
+client_secret_*.json
+
+# IDE/EDITOR
+.vscode/
+.idea/
+
+# Base De Datos
+*.db
+*.sql
+
